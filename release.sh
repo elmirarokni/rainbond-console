@@ -51,7 +51,7 @@ function release_allinone() {
     if [ "${DOMESTIC_BASE_NAME}" ]; then
       domestcName=${DOMESTIC_BASE_NAME}/${DOMESTIC_NAMESPACE}/rainbond:${VERSION}-allinone
       docker tag "${imageName}" "${domestcName}"
-      docker login -u "$DOMESTIC_DOCKER_USERNAME" -p "$DOMESTIC_DOCKER_PASSWORD" "${DOMESTIC_BASE_NAME}"
+      echo $DOMESTIC_DOCKER_PASSWORD|docker login -u "$DOMESTIC_DOCKER_USERNAME" "${DOMESTIC_BASE_NAME}" --password-stdin
       docker push "${domestcName}"
     fi
   fi
